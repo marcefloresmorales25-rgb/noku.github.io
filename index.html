@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nokü - Educación Ambiental</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER CON GLASSMORPHISM MEJORADO */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #059669, #10b981, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #059669, #10b981);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: #059669;
+            background: rgba(16, 185, 129, 0.08);
+        }
+
+        .nav-links a:hover::before {
+            width: 80%;
+        }
+
+        /* HERO SECTION MEJORADO */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, 
+                rgba(5, 150, 105, 0.9) 0%, 
+                rgba(16, 185, 129, 0.8) 50%, 
+                rgba(52, 211, 153, 0.7) 100%),
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="1" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffffff, #f0fdf4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-weight: 400;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffffff, #f0fdf4);
+            color: #059669;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* SECCIONES MEJORADAS */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #059669, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+            line-height: 1.6;
+        }
+
+        /* FEATURE CARDS MEJORADAS */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(52, 211, 153, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* CARRUSEL DE PLANTAS MEJORADO */
+        .plant-carousel {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plant-carousel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 32px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.12);
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .plant-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.2);
+            position: relative;
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+        }
+
+        .plant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .plant-image:hover img {
+            transform: scale(1.08);
+        }
+
+        .plant-image-fallback {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+        }
+
+        .plant-info {
+            flex: 1;
+        }
+
+        .plant-info h3 {
+            color: #059669;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .plant-scientific-name {
+            font-style: italic;
+            color: #6b7280;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plant-details {
+            display: grid;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plant-detail {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            color: #374151;
+            padding: 0.5rem;
+            background: rgba(16, 185, 129, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .plant-detail:hover {
+            background: rgba(16, 185, 129, 0.1);
+            transform: translateX(8px);
+        }
+
+        .plant-detail strong {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            color: #059669;
+        }
+
+        .plant-benefit {
+            color: #059669;
+            font-weight: 600;
+            padding: 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 16px;
+            border-left: 4px solid #10b981;
+        }
+
+        /* NAVEGACIÓN DEL CARRUSEL */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #059669;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .carousel-nav:hover {
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: 30px;
+        }
+
+        .carousel-nav.next {
+            right: 30px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 3rem;
+        }
+
+        .carousel-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.3);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-dot.active {
+            background: #10b981;
+            transform: scale(1.3);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* CALENDARIO MEJORADO */
+        .workshop-calendar {
+            background: white;
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .calendar-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.1);
+            padding: 3rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .calendar-nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            background: #e5e7eb;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .calendar-day-header {
+            background: #374151;
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .calendar-day {
+            background: white;
+            padding: 1rem;
+            min-height: 90px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            font-weight: 600;
+        }
+
+        .calendar-day:hover {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            transform: scale(1.02);
+        }
+
+        .calendar-day.other-month {
+            color: #d1d5db;
+            background: #f9fafb;
+        }
+
+        .calendar-day.has-workshop {
+            background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+            border: 2px solid #10b981;
+            position: relative;
+        }
+
+        .calendar-day.has-workshop::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+
+        .calendar-day.has-workshop:hover {
+            background: linear-gradient(135deg, #d1fae5, #ecfdf5);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+        }
+
+        .workshop-indicator {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(45deg, #10b981, #059669);
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* TALLERES SECTION MEJORADA */
+        .taller-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .taller-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.15);
+        }
+
+        .taller-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2.5rem;
+        }
+
+        .taller-icon-container {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3);
+            flex-shrink: 0;
+        }
+
+        .taller-info {
+            flex: 1;
+        }
+
+        .taller-info h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .taller-info p {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .taller-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .taller-detail {
+            background: rgba(16, 185, 129, 0.08);
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .taller-detail strong {
+            color: #059669;
+        }
+
+        /* ESPINO HIGHLIGHT MEJORADO */
+        .espino-highlight {
+            background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .espino-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><filter id="noise"><feTurbulence baseFrequency="0.7" numOctaves="1" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.03"/></svg>');
+        }
+
+        .espino-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .espino-info h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .espino-info p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .espino-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #a7f3d0;
+            margin-bottom: 0.5rem;
+        }
+
+        /* FOOTER MEJORADO */
+        footer {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            padding: 4rem 0 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: #34d399;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+
+        /* ANIMACIONES Y EFECTOS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* RESPONSIVE MEJORADO */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .espino-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            
+            .espino-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .carousel-slide {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .plant-image {
+                width: 280px;
+                height: 280px;
+            }
+
+            .taller-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .calendar-grid {
+                font-size: 0.85rem;
+            }
+
+            .calendar-day {
+                min-height: 70px;
+                padding: 0.8rem 0.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .plant-image {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .carousel-nav {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .carousel-nav.prev {
+                left: 15px;
+            }
+            
+            .carousel-nav.next {
+                right: 15px;
+            }
+        }
+
+        /* TOOLTIP MEJORADO */
+        .workshop-tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            max-width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .workshop-tooltip.show {
+            opacity: 1;
+        }
+
+        .workshop-legend {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .legend-item:hover {
+            background: rgba(16, 185, 129, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* EFECTOS DE LOADING Y MICRO-ANIMACIONES */
+        .loading-shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* EFECTOS PARALLAX SUTILES */
+        .parallax-element {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        /* Estilo para el enlace de Instagram */
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .instagram-link:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .instagram-link::before {
+            content: "📷";
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🌿 Nokü</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#plantas">Plantas</a></li>
+                <li><a href="#calendario">Calendario</a></li>
+                <li><a href="#talleres">Talleres</a></li>
+                <li><a href="#el-espino">El Espino</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content fade-in-up">
+            <h1>Nokü</h1>
+            <p>Un proyecto de transformación sostenible. Educación ambiental, talleres prácticos y conservación natural en Santa Tecla</p>
+            <a href="#talleres" class="btn">Ver Nuestros Talleres</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Carrusel de Plantas Mejorado -->
+    <section id="plantas" class="plant-carousel">
+        <div class="container">
+            <h2>🌱 Conocé Nuestras Plantas</h2>
+            <p class="section-subtitle">
+                Descubrí las plantas que cultivamos en Nokü y aprendé a cuidarlas en casa
+            </p>
+            
+            <div class="carousel-container">
+                <div class="carousel-wrapper" id="plantsCarousel">
+                    <!-- Slide 1: Estrella de Tierra -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="C:\Users\famil\workspace\intro.html\estrella.png" 
+                                 alt="Estrella de Tierra - Cryptanthus bivittatus"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">⭐</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Estrella de Tierra</h3>
+                            <p class="plant-scientific-name">Cryptanthus bivittatus</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Indirecta brillante o sombra parcial</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> 2-3 veces por semana</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 18°C a 26°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Evitar sol directo, buena ventilación</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> Brasil - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Perfecta para interiores y principiantes</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Aloe Diego -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="https://ibb.co/tp2hktGg" 
+                                 alt="Aloe Diego - Aloe White Lightning"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">🌿</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Aloe Diego</h3>
+                            <p class="plant-scientific-name">Aloe 'White Lightning'</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Sol directo o semisombra</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Cada 10-15 días, dejar secar</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 20°C a 30°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Evitar exceso de agua</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> Sudáfrica - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Resistente y purifica el aire</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Planta Peluche -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="planta peluche.png" 
+                                 alt="Planta Peluche - Echeveria harmsii"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">🧸</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Planta Peluche</h3>
+                            <p class="plant-scientific-name">Echeveria harmsii</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Mucha luz natural, sol suave</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Solo cuando el sustrato esté seco</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 18°C a 27°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> No mojar las hojas peluditas</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> México - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Única textura aterciopelada</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Árbol de Jade -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="arbol de jade.png" 
+                                 alt="Árbol de Jade - Crassula ovata"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">🌳</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Árbol de Jade</h3>
+                            <p class="plant-scientific-name">Crassula ovata</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Pleno sol o mucha luz indirecta</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Cada 2 semanas, dejar secar</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 20°C a 28°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Podar para dar forma</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> Sudáfrica y Mozambique - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Símbolo de buena suerte y prosperidad</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5: Gema Negra -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="gema negra.png" 
+                                 alt="Gema Negra - Haworthia pentagona"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">💎</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Gema Negra</h3>
+                            <p class="plant-scientific-name">Haworthia pentagona</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Luz filtrada o semisombra</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Poca agua, solo cuando esté seco</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 18°C a 25°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Ideal para interiores bien iluminados</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> Sudáfrica - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Perfecta para espacios pequeños y oficinas</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6: Lengua de Suegra Enana -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="lengua de suegra enana.png" 
+                                 alt="Lengua de Suegra Enana - Sansevieria trifasciata 'Hahnii'"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">👅</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Lengua de Suegra Enana</h3>
+                            <p class="plant-scientific-name">Sansevieria trifasciata 'Hahnii'</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Luz indirecta o sombra parcial</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Cada 2-3 semanas, tolera sequías</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 18°C a 30°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Muy resistente, ideal para principiantes</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> África Occidental - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Purifica el aire y requiere poco mantenimiento</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7: Suculenta Arcoíris -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="suculenta.png" 
+                                 alt="Suculenta Arcoíris - Graptoveria 'Fred Ives'"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">🌈</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Suculenta Arcoíris</h3>
+                            <p class="plant-scientific-name">Graptoveria 'Fred Ives'</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Luz solar directa o brillante</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Poco, solo cuando la tierra esté seca</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 20°C a 28°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Sus colores cambian con la luz, prefiere exteriores</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> Híbrido (California, EE.UU.) - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Colores vibrantes que cambian con la exposición al sol</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8: Cactus Oruga -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="cactus oruga.png" 
+                                 alt="Cactus Oruga - Euphorbia ritchiei"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">🐛</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Cactus Oruga</h3>
+                            <p class="plant-scientific-name">Euphorbia ritchiei</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Sol directo o semisombra</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Muy poco, cada 2-3 semanas</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 25°C a 35°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> No tocar el látex si se rompe, puede irritar la piel</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> Kenia (África Oriental) - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Forma única que se asemeja a una oruga</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9: Sedo -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="sedo.png" 
+                                 alt="Sedo - Sedum nussbaumerianum"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">🌞</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Sedo</h3>
+                            <p class="plant-scientific-name">Sedum nussbaumerianum</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Pleno sol o luz muy brillante</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Una vez por semana, suelo bien drenado</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 18°C a 26°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Cambia de color con el sol</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> México - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Cambia de color según la exposición solar</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10: Piedra de Luna -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="piedra de luna.png" 
+                                 alt="Piedra de Luna - Pachyphytum hookeri"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">🌕</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Piedra de Luna</h3>
+                            <p class="plant-scientific-name">Pachyphytum hookeri</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Luz natural intensa o sol parcial</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Poco, cada 10-15 días</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 20°C a 30°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Evitar tocar las hojas para no quitar su cera natural</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> México - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Hojas con apariencia cerosa que reflejan la luz</div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 11: Rosa de Maguey -->
+                    <div class="carousel-slide">
+                        <div class="plant-image">
+                            <img src="rosa de maguey.png" 
+                                 alt="Rosa de Maguey - Echeveria imbricata"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="plant-image-fallback" style="display: none;">🌹</div>
+                        </div>
+                        <div class="plant-info">
+                            <h3>Rosa de Maguey</h3>
+                            <p class="plant-scientific-name">Echeveria imbricata</p>
+                            <div class="plant-details">
+                                <div class="plant-detail">☀️ <strong>Luz:</strong> Mucha luz o semisombra clara</div>
+                                <div class="plant-detail">💧 <strong>Riego:</strong> Solo cuando el sustrato esté seco</div>
+                                <div class="plant-detail">🌡️ <strong>Temperatura:</strong> 18°C a 26°C</div>
+                                <div class="plant-detail">🌱 <strong>Cuidados:</strong> Proteger de la lluvia directa</div>
+                                <div class="plant-detail">♻️ <strong>Abono:</strong> Compost natural</div>
+                                <div class="plant-detail">📍 <strong>Origen:</strong> Híbrido mexicano - Cultivada en Nokü</div>
+                            </div>
+                            <div class="plant-benefit">✅ Forma de roseta perfecta y colores vibrantes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-nav prev" onclick="changeSlide(-1)">❮</button>
+                <button class="carousel-nav next" onclick="changeSlide(1)">❯</button>
+            </div>
+
+            <div class="carousel-dots">
+                <div class="carousel-dot active" onclick="currentSlide(1)"></div>
+                <div class="carousel-dot" onclick="currentSlide(2)"></div>
+                <div class="carousel-dot" onclick="currentSlide(3)"></div>
+                <div class="carousel-dot" onclick="currentSlide(4)"></div>
+                <div class="carousel-dot" onclick="currentSlide(5)"></div>
+                <div class="carousel-dot" onclick="currentSlide(6)"></div>
+                <div class="carousel-dot" onclick="currentSlide(7)"></div>
+                <div class="carousel-dot" onclick="currentSlide(8)"></div>
+                <div class="carousel-dot" onclick="currentSlide(9)"></div>
+                <div class="carousel-dot" onclick="currentSlide(10)"></div>
+                <div class="carousel-dot" onclick="currentSlide(11)"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Calendario de Talleres Mejorado -->
+    <section id="calendario" class="workshop-calendar">
+        <div class="container">
+            <h2>📅 Calendario de Talleres</h2>
+            <p class="section-subtitle">
+                Reservá tu lugar en nuestros talleres - ¡Cupos limitados!
+            </p>
+
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="calendar-nav-btn" onclick="previousMonth()">❮ Anterior</button>
+                    <h3 id="currentMonth" style="font-size: 1.8rem; margin: 0; font-weight: 800;"></h3>
+                    <button class="calendar-nav-btn" onclick="nextMonth()">Siguiente ❯</button>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- El calendario se genera dinámicamente -->
+                </div>
+
+                <div class="workshop-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #10b981;"></div>
+                        <span>🌱 Compostaje</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #059669;"></div>
+                        <span>🌿 Abono</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #3b82f6;"></div>
+                        <span>♻️ Reciclaje</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #f59e0b;"></div>
+                        <span>🌾 Huertos</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #8b5cf6;"></div>
+                        <span>🌼 Siembra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Quiénes Somos Mejorada -->
+    <section id="quienes-somos" class="section">
+        <div class="container">
+            <h2>¿Quiénes Somos?</h2>
+            <p class="section-subtitle">
+                Conocé más sobre nuestro proyecto de transformación ambiental
+            </p>
+            
+            <div class="features">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">📚</div>
+                    <h3>Historia del Ecoparque</h3>
+                    <p>El Ecoparque El Espino ha sido un espacio natural emblemático en Santa Tecla, conservando 55 manzanas de bosque cafetalero en las faldas del volcán de San Salvador, siendo un refugio de biodiversidad y educación ambiental para la comunidad.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Objetivo del Proyecto</h3>
+                    <p>Buscamos renovar y modernizar el ecoparque, implementando programas educativos innovadores, talleres prácticos y experiencias interactivas que fortalezcan la conciencia ambiental en visitantes de todas las edades.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">👥</div>
+                    <h3>Nuestro Equipo</h3>
+                    <p>Un equipo multidisciplinario de estudiantes comprometidos con el medio ambiente, trabajando en colaboración con biólogos, educadores ambientales y especialistas en sostenibilidad para crear un impacto positivo en nuestra comunidad.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Enfoque Sostenible</h3>
+                    <p>Priorizamos la sostenibilidad y educación ambiental como pilares fundamentales. Cada actividad está diseñada para promover prácticas ecológicas, el respeto por la naturaleza y el desarrollo de una mentalidad ambientalmente responsable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Talleres Educativos Mejorados -->
+    <section id="talleres" class="section" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+        <div class="container">
+            <h2>Nuestros Talleres Educativos</h2>
+            <p class="section-subtitle">
+                Aprende, experimenta y contribuye al cuidado del medio ambiente con nuestros talleres prácticos
+            </p>
+            
+            <div style="display: grid; gap: 2rem;">
+                <!-- Taller de Compostaje -->
+                <div class="taller-card">
+                    <div class="taller-content">
+                        <div class="taller-icon-container">🌱</div>
+                        <div class="taller-info">
+                            <h3>Taller de Compostaje Casero</h3>
+                            <p>
+                                Aprendé a transformar residuos orgánicos como cáscaras y restos de comida en abono natural. 
+                                Te enseñamos paso a paso cómo hacer compost en casa de forma fácil, limpia y sin mal olor.
+                            </p>
+                            <div class="taller-details">
+                                <div class="taller-detail">📅 <strong>Días:</strong> Sábados y domingos</div>
+                                <div class="taller-detail">🕘 <strong>Hora:</strong> 9:00 am – 10:30 am</div>
+                                <div class="taller-detail">👥 <strong>Edad:</strong> A partir de 12 años</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taller de Abono -->
+                <div class="taller-card">
+                    <div class="taller-content">
+                        <div class="taller-icon-container">🌿</div>
+                        <div class="taller-info">
+                            <h3>Taller de Elaboración de Abono</h3>
+                            <p>
+                                Conocé cómo crear abono rico en nutrientes usando compost. Vas a preparar tu propio fertilizante 
+                                natural y aprenderás por qué es mejor que los químicos. ¡Al final, te llevás una muestra!
+                            </p>
+                            <div class="taller-details">
+                                <div class="taller-detail">📅 <strong>Días:</strong> Miércoles y sábados</div>
+                                <div class="taller-detail">🕘 <strong>Hora:</strong> 11:00 am – 12:00 pm</div>
+                                <div class="taller-detail">👥 <strong>Edad:</strong> Todo público</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taller de Reciclaje -->
+                <div class="taller-card">
+                    <div class="taller-content">
+                        <div class="taller-icon-container">♻️</div>
+                        <div class="taller-info">
+                            <h3>Taller de Reciclaje Creativo</h3>
+                            <p>
+                                Dale una segunda vida a materiales como cartón, botellas y papel. En este taller, usamos el reciclaje 
+                                para crear objetos útiles y decorativos mientras aprendemos sobre el cuidado del medio ambiente.
+                            </p>
+                            <div class="taller-details">
+                                <div class="taller-detail">📅 <strong>Días:</strong> Viernes</div>
+                                <div class="taller-detail">🕘 <strong>Hora:</strong> 2:00 pm – 3:30 pm</div>
+                                <div class="taller-detail">👥 <strong>Edad:</strong> A partir de 10 años</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taller de Huertos -->
+                <div class="taller-card">
+                    <div class="taller-content">
+                        <div class="taller-icon-container">🌾</div>
+                        <div class="taller-info">
+                            <h3>Taller de Huertos en Casa</h3>
+                            <p>
+                                Aprendé a sembrar hortalizas y hierbas en espacios pequeños. Diseñá tu propio huerto en casa y 
+                                conocé todo lo necesario para cultivarlo: tierra, riego, luz y cuidados.
+                            </p>
+                            <div class="taller-details">
+                                <div class="taller-detail">📅 <strong>Días:</strong> Domingos</div>
+                                <div class="taller-detail">🕘 <strong>Hora:</strong> 10:30 am – 12:00 pm</div>
+                                <div class="taller-detail">👥 <strong>Edad:</strong> Jóvenes y adultos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taller de Siembra -->
+                <div class="taller-card">
+                    <div class="taller-content">
+                        <div class="taller-icon-container">🌼</div>
+                        <div class="taller-info">
+                            <h3>Taller de Siembra de Plantas</h3>
+                            <p>
+                                Ideal para niños, jóvenes y familias. Aprenderán a sembrar desde la semilla, cuidar una plantita 
+                                y llevarla a casa. Una experiencia para conectar con la naturaleza y sembrar conciencia ambiental.
+                            </p>
+                            <div class="taller-details">
+                                <div class="taller-detail">📅 <strong>Días:</strong> Lunes y viernes</div>
+                                <div class="taller-detail">🕘 <strong>Hora:</strong> 8:30 am – 9:30 am</div>
+                                <div class="taller-detail">👥 <strong>Edad:</strong> Niños y familias</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: rgba(255, 255, 255, 0.9); border-radius: 24px; box-shadow: 0 15px 50px rgba(0,0,0,0.08); backdrop-filter: blur(20px);">
+                <h3 style="color: #059669; margin-bottom: 1rem; font-size: 1.8rem; font-weight: 800;">¿Interesado en participar?</h3>
+                <p style="margin-bottom: 2rem; color: #6b7280; font-size: 1.1rem; line-height: 1.7;">
+                    Todos nuestros talleres incluyen materiales, certificado de participación y plantas o productos para llevar a casa.
+                </p>
+                <a href="#calendario" class="btn">Ver Calendario y Reservar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Sobre Nokü -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <h2>Nokü</h2>
+            <p class="section-subtitle">
+                El proyecto transforma el tradicional Ecoparque El Espino en Nokü, 
+                combinando la riqueza natural existente with programas innovadores de educación ambiental y talleres prácticos.
+            </p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Talleres Educativos</h3>
+                    <p>Cinco talleres especializados en compostaje, reciclaje, huertos caseros y siembra de plantas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">♻️</div>
+                    <h3>Sostenibilidad</h3>
+                    <p>Prácticas ecológicas y desarrollo de productos naturales elaborados en nuestros talleres.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Para Toda la Familia</h3>
+                    <p>Programas diseñados para diferentes edades, desde niños hasta adultos mayores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: El Espino Highlight Mejorado -->
+    <section id="el-espino" class="espino-highlight">
+        <div class="container">
+            <div class="espino-grid">
+                <div class="espino-info">
+                    <h3>🌿 Nokü</h3>
+                    <p>
+                        Este emblemático espacio natural se ha transformado en un centro educativo de vanguardia. 
+                        Ubicado en las faldas del volcán de San Salvador, Nokü combina las 55 manzanas de bosque 
+                        cafetalero original con modernas instalaciones para talleres ambientales, creando una 
+                        experiencia educativa única.
+                    </p>
+                    <div class="espino-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">5</div>
+                            <div>Talleres</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">7</div>
+                            <div>Días/Semana</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">Nokü</div>
+                            <div>Proyecto</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">♻️</div>
+                            <div>Sostenible</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="parallax-element">
+                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-radius: 24px; padding: 3rem; border: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #a7f3d0;">Transformación Sostenible</h4>
+                        <p style="color: rgba(255,255,255,0.9);">
+                            De ecoparque tradicional a centro de innovación ambiental, Nokü representa el futuro 
+                            de la educación ecológica en El Salvador.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Actividades -->
+    <section id="actividades" class="section">
+        <div class="container">
+            <h2>Actividades y Experiencias</h2>
+            <p class="section-subtitle">
+                Descubre todas las experiencias que Nokü tiene preparadas para ti
+            </p>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🥾</div>
+                    <h3>Senderismo</h3>
+                    <p>Recorre los senderos interpretativos y descubre la riqueza natural del bosque cafetalero.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>Fotografía</h3>
+                    <p>Captura la belleza de las fumarolas volcánicas y la diversidad de especies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Educación Ambiental</h3>
+                    <p>Aprende sobre ecosistemas volcánicos y conservación mediante códigos QR interactivos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Recreación Familiar</h3>
+                    <p>Disfruta de un espacio seguro y natural perfecto para toda la familia y mascotas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🦅</div>
+                    <h3>Observación de Aves</h3>
+                    <p>Descubre la avifauna local en un ambiente natural y tranquilo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☕</div>
+                    <h3>Cultura Cafetalera</h3>
+                    <p>Conoce sobre el cultivo tradicional de café en las faldas del volcán.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Mapa/Visítanos -->
+    <section id="mapa" class="section">
+        <div class="container">
+            <h2>Visítanos</h2>
+            <p class="section-subtitle">Conoce nuestras instalaciones y únete a nuestros talleres educativos</p>
+            
+            <div style="margin-top: 3rem; text-align: center;">
+                <div class="feature-card" style="max-width: 700px; margin: 0 auto;">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Nokü</h3>
+                    <p>Un espacio transformado para la educación ambiental y la conservación, donde la naturaleza y el aprendizaje se combinan en una experiencia única.</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="#talleres" class="btn">Ver Talleres Disponibles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Galería -->
+    <section id="galeria" class="section">
+        <div class="container">
+            <h2>Galería Natural</h2>
+            <p class="section-subtitle">Explora la belleza natural de Nokü</p>
+            <div class="features">
+                <div class="feature-card" style="cursor: pointer;" onclick="showGalleryModal('🌋 Fumarolas Volcánicas')">
+                    <div class="feature-icon">🌋</div>
+                    <h3>Fumarolas Volcánicas</h3>
+                    <p>Contempla la actividad geotérmica natural del volcán de San Salvador</p>
+                </div>
+                <div class="feature-card" style="cursor: pointer;" onclick="showGalleryModal('🌿 Bosque Cafetalero')">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Bosque Cafetalero</h3>
+                    <p>Recorre el tradicional cultivo de café en un ambiente natural preservado</p>
+                </div>
+                <div class="feature-card" style="cursor: pointer;" onclick="showGalleryModal('🦋 Fauna Local')">
+                    <div class="feature-icon">🦋</div>
+                    <h3>Fauna Local</h3>
+                    <p>Descubre la diversidad de especies que habitan en nuestro ecosistema</p>
+                </div>
+                <div class="feature-card" style="cursor: pointer;" onclick="showGalleryModal('🌺 Flora Nativa')">
+                    <div class="feature-icon">🌺</div>
+                    <h3>Flora Nativa</h3>
+                    <p>Conoce las especies vegetales autóctonas de la región volcánica</p>
+                </div>
+                <div class="feature-card" style="cursor: pointer;" onclick="showGalleryModal('🥾 Senderos')">
+                    <div class="feature-icon">🥾</div>
+                    <h3>Senderos</h3>
+                    <p>Camina por rutas interpretativas diseñadas para el aprendizaje</p>
+                </div>
+                <div class="feature-card" style="cursor: pointer;" onclick="showGalleryModal('🏞️ Miradores')">
+                    <div class="feature-icon">🏞️</div>
+                    <h3>Miradores</h3>
+                    <p>Disfruta de vistas panorámicas del valle de Santa Tecla</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER MEJORADO -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Nokü</h4>
+                    <p>📍 Santa Tecla, La Libertad</p>
+                    <p>🏫 Faldas del Volcán de San Salvador</p>
+                    <p>🎓 Centro de Educación Ambiental</p>
+                    <p>♻️ Talleres Sostenibles</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Talleres Disponibles</h4>
+                    <p>🌱 Compostaje Casero</p>
+                    <p>🌿 Elaboración de Abono</p>
+                    <p>♻️ Reciclaje Creativo</p>
+                    <p>🌾 Huertos en Casa</p>
+                    <p>🌼 Siembra de Plantas</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Horarios de Talleres</h4>
+                    <p>🗓️ Lunes a Domingos</p>
+                    <p>🕰️ 8:30 AM - 3:30 PM</p>
+                    <p>👥 Todas las edades</p>
+                    <p>📋 Inscripciones abiertas</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <p><a href="https://www.instagram.com/official__noku?igsh=MTRkczBzMW5ibzc5eQ==" class="instagram-link" target="_blank">Instagram Oficial</a></p>
+                    <p>📧 Contacto disponible</p>
+                    <p>📱 Reservas por WhatsApp</p>
+                    <p>🎯 Impacto ambiental real</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); text-align: center;">
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9);">
+                    © 2025 Nokü. Transformando la educación ambiental para las futuras generaciones.
+                </p>
+                <p style="margin-top: 1rem; color: rgba(255,255,255,0.7);">
+                    Un proyecto estudiantil comprometido con la sostenibilidad y conservación ambiental
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOOLTIP Y MODAL -->
+    <div class="workshop-tooltip" id="tooltip"></div>
+
+    <script>
+        // Variables globales
+        let currentSlideIndex = 0;
+        const totalSlides = 11; // Actualizado a 11 slides
+        let currentDate = new Date();
+        
+        const monthNames = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+        const dayNames = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+
+        // Datos de los talleres con colores actualizados
+        const workshops = {
+            'compostaje': {
+                name: 'Compostaje Casero',
+                days: [0, 6], // Domingo, Sábado
+                time: '9:00-10:30 AM',
+                color: '#10b981',
+                icon: '🌱'
+            },
+            'abono': {
+                name: 'Elaboración de Abono',
+                days: [3, 6], // Miércoles, Sábado
+                time: '11:00-12:00 PM',
+                color: '#059669',
+                icon: '🌿'
+            },
+            'reciclaje': {
+                name: 'Reciclaje Creativo',
+                days: [5], // Viernes
+                time: '2:00-3:30 PM',
+                color: '#3b82f6',
+                icon: '♻️'
+            },
+            'huertos': {
+                name: 'Huertos en Casa',
+                days: [0], // Domingo
+                time: '10:30-12:00 PM',
+                color: '#f59e0b',
+                icon: '🌾'
+            },
+            'siembra': {
+                name: 'Siembra de Plantas',
+                days: [1, 5], // Lunes, Viernes
+                time: '8:30-9:30 AM',
+                color: '#8b5cf6',
+                icon: '🌼'
+            }
+        };
+
+        // FUNCIONES DEL CARRUSEL
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1;
+            }
+            
+            updateCarousel();
+        }
+
+        function currentSlide(n) {
+            currentSlideIndex = n - 1;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const carousel = document.getElementById('plantsCarousel');
+            const translateX = -currentSlideIndex * 100;
+            carousel.style.transform = `translateX(${translateX}%)`;
+            
+            // Actualizar dots
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        // FUNCIONES DEL CALENDARIO
+        function generateCalendar(year, month) {
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startDate = new Date(firstDay);
+            startDate.setDate(startDate.getDate() - firstDay.getDay());
+            
+            const calendarGrid = document.getElementById('calendarGrid');
+            calendarGrid.innerHTML = '';
+            
+            // Headers de días
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'calendar-day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // Días del calendario
+            const currentDateObj = new Date(startDate);
+            for (let i = 0; i < 42; i++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = currentDateObj.getDate();
+                
+                const isCurrentMonth = currentDateObj.getMonth() === month;
+                const dayOfWeek = currentDateObj.getDay();
+                
+                if (!isCurrentMonth) {
+                    dayElement.classList.add('other-month');
+                }
+                
+                // Verificar si hay talleres este día
+                const hasWorkshop = checkWorkshopsForDay(dayOfWeek);
+                if (hasWorkshop.length > 0 && isCurrentMonth) {
+                    dayElement.classList.add('has-workshop');
+                    
+                    // Agregar indicador
+                    const indicator = document.createElement('div');
+                    indicator.className = 'workshop-indicator';
+                    dayElement.appendChild(indicator);
+                    
+                    // Agregar eventos
+                    dayElement.addEventListener('mouseenter', (e) => {
+                        showWorkshopTooltip(e, hasWorkshop);
+                    });
+                    
+                    dayElement.addEventListener('mouseleave', hideWorkshopTooltip);
+                    
+                    dayElement.addEventListener('click', () => {
+                        reserveWorkshop(currentDateObj.toDateString(), hasWorkshop);
+                    });
+                }
+                
+                calendarGrid.appendChild(dayElement);
+                currentDateObj.setDate(currentDateObj.getDate() + 1);
+            }
+        }
+
+        function checkWorkshopsForDay(dayOfWeek) {
+            const availableWorkshops = [];
+            for (const [key, workshop] of Object.entries(workshops)) {
+                if (workshop.days.includes(dayOfWeek)) {
+                    availableWorkshops.push(workshop);
+                }
+            }
+            return availableWorkshops;
+        }
+
+        function showWorkshopTooltip(event, workshopList) {
+            const tooltip = document.getElementById('tooltip');
+            let content = '<strong>Talleres disponibles:</strong><br>';
+            workshopList.forEach(workshop => {
+                content += `${workshop.icon} ${workshop.name}<br>⏰ ${workshop.time}<br>`;
+            });
+            content += '<br>¡Haz click para reservar!';
+            
+            tooltip.innerHTML = content;
+            tooltip.style.left = event.pageX + 10 + 'px';
+            tooltip.style.top = event.pageY - 10 + 'px';
+            tooltip.classList.add('show');
+        }
+
+        function hideWorkshopTooltip() {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.classList.remove('show');
+        }
+
+        function reserveWorkshop(date, workshopList) {
+            let message = `🌱 ¿Querés reservar para el ${date}?\n\nTalleres disponibles:\n`;
+            workshopList.forEach(workshop => {
+                message += `${workshop.icon} ${workshop.name} (${workshop.time})\n`;
+            });
+            message += '\n✅ ¡Hacé click en "Aceptar" para confirmar tu reserva!';
+            
+            if (confirm(message)) {
+                alert('🎉 ¡Excelente! Tu reserva ha sido confirmada.\n\n📞 Te contactaremos pronto para confirmar los detalles.\n\n🌱 ¡Gracias por elegir Nokü!');
+            }
+        }
+
+        function updateCalendarHeader() {
+            const monthElement = document.getElementById('currentMonth');
+            monthElement.textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+        }
+
+        function previousMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            updateCalendarHeader();
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            updateCalendarHeader();
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        }
+
+        // FUNCIÓN PARA GALERÍA
+        function showGalleryModal(title) {
+            alert(`📸 ¡Próximamente galería completa de imágenes!\n\n${title}\n\n🌿 Estamos preparando una experiencia visual increíble para que conozcas todos los rincones de Nokü.`);
+        }
+
+        // SMOOTH SCROLLING MEJORADO
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // HEADER TRANSPARENCY MEJORADO
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 8px 32px rgba(0,0,0,0.12)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.85)';
+                header.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1)';
+            }
+
+            // Hide/show header on scroll
+            if (scrollY > lastScrollY && scrollY > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = scrollY;
+        });
+
+        // INTERSECTION OBSERVER PARA ANIMACIONES
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                }
+            });
+        }, observerOptions);
+
+        // PARALLAX EFFECT SIMPLE
+        function handleParallax() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+            });
+        }
+
+        // INICIALIZACIÓN
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar calendario
+            updateCalendarHeader();
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+            
+            // Inicializar carrusel
+            updateCarousel();
+            
+            // Auto-play del carrusel
+            setInterval(() => {
+                changeSlide(1);
+            }, 8000);
+            
+            // Observar elementos para animaciones
+            document.querySelectorAll('.feature-card, .taller-card, .section h2').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                observer.observe(el);
+            });
+            
+            // Parallax en scroll (throttled)
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        handleParallax();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+            
+            console.log('🌱 Nokü website loaded successfully!');
+        });
+
+        // EFECTOS DE HOVER MEJORADOS
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.classList.contains('btn')) {
+                e.target.style.transform = 'translateY(-3px) scale(1.05)';
+            }
+        });
+
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.classList.contains('btn')) {
+                e.target.style.transform = 'translateY(0) scale(1)';
+            }
+        });
+    </script>
+</body>
+</html>
+
